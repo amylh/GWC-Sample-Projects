@@ -1,0 +1,118 @@
+/* Author: Amy Lee
+ * GWC SIP 2018 - Kate Spade-NYU Tandon
+ * U2L1: Intro to Robotics
+ * LED Morse Code Message Activity - Solution Code
+ */
+
+// This program displays a given message in Morse code via a blinking LED
+
+int unit = 300;
+int pin = 10; // Make sure your circuit is using digital pin 10!
+// You can change this message to fit your own preferences
+// For this program, only numbers and letters are allowed
+String message = "Penguins rule";
+
+void setup(){
+  // Set pin to OUTPUT (i.e. sending power to the LED)
+  pinMode(pin, OUTPUT);
+}
+
+void loop(){
+  // Display the message in Morse code
+  display_morse(message);
+}
+
+// ======================= Helper functions below ==========================
+
+// Make the LED display a dot (blink)
+void dot(){
+  digitalWrite(pin, HIGH);
+  delay(unit);
+  digitalWrite(pin, LOW);
+}
+
+// Make the LED display a dash (long blink)
+void dash(){
+  digitalWrite(pin, HIGH);
+  delay(unit * 3);
+  digitalWrite(pin, LOW);
+}
+
+void letter_space(){
+  digitalWrite(pin, LOW);
+  delay(unit * 3);
+}
+
+// Make the LED display a space (long pause)
+void word_space(){
+  digitalWrite(pin, LOW);
+  delay(unit * 7);
+}
+
+// Convert a plaintext string into a Morse code string
+String str_to_morse(String message){
+  String str = message.toLowerCase();
+  String result = "";
+  int len = str.length();
+  for (int i = 0; i < len; i++){
+    if (str[i] == 'a'){result += ".-";}
+    else if (str[i] == 'b'){result += "-...";}
+    else if (str[i] == 'c'){result += "-.-.";}
+    else if (str[i] == 'd'){result += "-..";}
+    else if (str[i] == 'e'){result += ".";}
+    else if (str[i] == 'f'){result += "..-.";}
+    else if (str[i] == 'g'){result += "--.";}
+    else if (str[i] == 'h'){result += "....";}
+    else if (str[i] == 'i'){result += "..";}
+    else if (str[i] == 'j'){result += ".---";}
+    else if (str[i] == 'k'){result += "-.-";}
+    else if (str[i] == 'l'){result += ".-..";}
+    else if (str[i] == 'm'){result += "--";}
+    else if (str[i] == 'n'){result += "-.";}
+    else if (str[i] == 'o'){result += "---";}
+    else if (str[i] == 'p'){result += ".--.";}
+    else if (str[i] == 'q'){result += "--.-";}
+    else if (str[i] == 'r'){result += ".-.";}
+    else if (str[i] == 's'){result += "...";}
+    else if (str[i] == 't'){result += "-";}
+    else if (str[i] == 'u'){result += "..-";}
+    else if (str[i] == 'v'){result += "...-";}
+    else if (str[i] == 'w'){result += ".--";}
+    else if (str[i] == 'x'){result += "-..-";}
+    else if (str[i] == 'y'){result += "-.--";}
+    else if (str[i] == 'z'){result += "--..";}
+    else if (str[i] == '1'){result += ".----";}
+    else if (str[i] == '2'){result += "..---";}
+    else if (str[i] == '3'){result += "...--";}
+    else if (str[i] == '4'){result += "....-";}
+    else if (str[i] == '5'){result += ".....";}
+    else if (str[i] == '6'){result += "-....";}
+    else if (str[i] == '7'){result += "--...";}
+    else if (str[i] == '8'){result += "---..";}
+    else if (str[i] == '9'){result += "----.";}
+    else if (str[i] == '0'){result += "-----";}
+    else {result += "";}
+  }
+  return result;
+}
+
+// Make the LED display a given Morse Code message
+void display_morse(String morse_code){
+  int len = morse_code.length();
+  for (int i = 0; i < len; i++){
+    // If the ith character of the string is a dot, display a dot
+    if (morse_code[i] == '.'){
+      dot();
+      letter_space();
+    }
+    // If the ith character of the string is a dash, display a dash
+    else if (morse_code[i] == '-'){
+      dash();
+      letter_space();
+    }
+    // Otherwise, display a space
+    else {
+      word_space();
+    }
+  }
+}
