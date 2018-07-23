@@ -7,6 +7,7 @@
 // This program displays a blinking LED
 
 int pin = 10; // Make sure your circuit is using digital pin 10!
+int unit = 500;
 
 void setup(){
   // Set pin to OUTPUT (i.e. sending power to the LED)
