@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <!-- Get fonts and CSS -->
+  <link href='https://fonts.googleapis.com/css?family=Nunito:300,700' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Get JavaScript -->
+  <script src="aboutme.js"></script>
+  <!-- Window title -->
+  <title>About Me</title>
+</head>
+<body>
+  <div id="header">
+    <!-- Penguin image -->
+    <a id="profile-pic" href="https://clipartxtras.com/download/8223b2688156ef637d6b7671095c52012cdb020c.html" title="Image from clipartxtras.com" ><img id="profile-pic"  src="https://img.clipartxtras.com/7eb14e59b72c0ca4deda1f4f5ae66c43_671-vind-ik-leuks-12-reacties-naomi-lord-naomi-lord-op-chibi-penguin-drawing_1080-1080.jpeg" alt="chibi penguin drawing"/></a> Pinga
+
+    <!-- Navigation menu -->
+    <span id="navigation">
+      <a href="contact.html">Contact</a>
+      <a href="aboutme.html">Home</a>
+    </span>
+  </div>
+
+  <div class="content">
+    <h1>Bio:</h1> <button id="show/hide-Bio" onclick="showHideSection('Bio')">Hide Bio</button>
+    <div id="Bio">
+      <p>I'm a random human out of over 7 billion on planet Earth. I got into coding because 1) I joined my high school's robotics team and they needed more coders and 2) I wanted to program cool video games like those of <em>The Legend of Zelda</em> series.
+      </p>
+      <p>
+        <strong>Likes:</strong> Pretty art (especially by the talented <a href="https://deviantart.com/yuumei/gallery">Yuumei</a>) and cool bits of technology that you can make at home (like this <a href="https://www.youtube.com/watch?v=Jd3-eiid-Uw">VR equipment that you can make using a Wii Remote</a>).
+      </p>
+      <p><strong>Dislikes:</strong> Plagiarism. Taking credit for others' work is not cool. </p>
+      <p>
+        <strong>Dreams for the future:</strong> To get a decent job that will make my parents happy, and then take a super long vacation during which I'll visit the beautiful and historic places of the world.
+      </p>
+      <p>
+        <h2>Favorite Websites:</h2>
+        <ul>
+          <li><a href="http://www.scratch.mit.edu">Scratch</a>: I love making Scratch projects and browsing the projects that other Scratchers have made!</li>
+          <li><a href="https://reddit.com/">Reddit</a>: Because I'm a degenerate who wastes way too much time looking at random internet posts instead of studying.</li>
+          <li><a href="https://www.deviantart.com/">Deviantart</a>: I really enjoy looking at the beautiful pieces of art that others have made, and actively try to improve my own art in the hopes that, someday, I too can paint with the same level of skill.</li>
+        </ul>
+      </p>
+    </div>
+
+    <h1>Penguin Pics:</h1> <button id="show/hide-Penguins" onclick="showHideSection('Penguins')">Hide Penguins</button>
+    <div id="Penguins">
+      <p>In case it wasn't already obvious, my favorite animal is the cute and cuddly penguin. Enjoy the pics!</p>
+      <!-- Everything that gets updated by the "next image" function -->
+      <div id="update-penguins">
+        <h2>Robo Penguin</h2>
+        <p>This penguin has wheels and synthetic (but still cuddly) fluff</p>
+        <img src="https://images2.sw-cdn.net/product/picture/710x528_6211899_2832503_1459312498.jpg" height=400px alt="Robo Penguin">
+      </div>
+      <div><button onclick="nextImg()">Next Image</button></div>
+    </div>
+
+  </div>
+</body>
+</html>
