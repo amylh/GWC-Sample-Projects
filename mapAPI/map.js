@@ -19,15 +19,13 @@ function init() {
 		target: 'map',    // The "Target" is our <div> name. Where in the HTML is the map being rendered.
 		layers: [
 		  new ol.layer.Tile({
-		    source: new ol.source.OSM() // Explain: this is a required variable. Basically tells us what kind of layer we want.
+        // source: Basically tells us what kind of layer we want. Different types of layers can have different formats and levels of detail, which also have different loading speeds.
+		    source: new ol.source.OSM()
 		  })
-		  // Explain: Open Layer offers different types of layers. Layers are like different brushes used to make the same image. They look different. Some might lag more than others or have different levels of detail.
 		],
-		// Note from the View Animation website:
-		// Improve user experience by loading tiles while animating. Will make
-		// animations stutter on mobile or slow devices.
-		loadTilesWhileAnimating: true,
-		view: view
+    view: view,
+		// Note from the View Animation website:setting loadTilesWhileAnimating to true will improve user experience by loading tiles while animating (i.e. making the transitions prettier). However, these animations lag on mobile or slow devices.
+		loadTilesWhileAnimating: true
 	});
 }
 
@@ -49,13 +47,13 @@ function makeCountryRequest() {
 	 	return;
 	}
 
-  // To get the coordinate associated with the country, submit a query to the REST Countries API
+  // To get the coordinate associated with the country, we need to submit a GET request to the REST Countries API
+  // To make the GET request, we need to provide a query:
 	var query = "https://restcountries.eu/rest/v2/name/"+countryName+"?fullText=true";
-
   // Replace all the spaces in the country name with '%20'. We need to do this because URLs can't have spaces in them
 	query = query.replace(/ /g, "%20");
 
-  // Open the GET request to get info from the API
+  // Now open the GET request to get info from the API
 	countryRequest = new XMLHttpRequest();
 	// The 'true' parameter changes the call from synchronous to an asynchronous call.
   // Note: synchronous requests block the client until the first operation finishes (i.e. won't let any operations through), which can cause delays. But asynchonous requests don't block the client.
@@ -64,45 +62,42 @@ function makeCountryRequest() {
 	// Add an onload function to process what happens when we send the HTTP Request.
 	countryRequest.onload = processCountryRequest;
 
-  // Send the actual GET request
+  // Finally, send the actual GET request
 	countryRequest.send();
 }
 
 function processCountryRequest() {
-	// In the onload function, we wait until the request is complete.
+	// In the onload function, we wait until the request is complete (i.e. the ready state is 4)
 	if(countryRequest.readyState != 4) {
 		return;
 	}
 
-	// Once the request is completed, We look for errors.
+	// Once the request is completed, We look for errors (i.e. if status != 200 or there's no response text)
 	if (countryRequest.status != 200 || countryRequest.responseText === "") {
 	 	alert("We were unable to find your requested country!");
 	 	return;
 	}
 
-
-	// If the request succeeds (i.e. no prior returns), we parse the information that was sent back.
+	// If the request succeeds (i.e. no prior returns), we parse the information (i.e. the JSON) that was sent back.
   // First: convert the JSON into a list.
   var countryInformation = JSON.parse(countryRequest.responseText);
-	var lon = countryInformation[0].latlng[1];   // longitude
-	var lat = countryInformation[0].latlng[0];   // latitude
+  // Note that the JSON contains a lot of info besides the longitude/latitude.
+  var lat = countryInformation[0].latlng[0];   // latitude
+  var lon = countryInformation[0].latlng[1];   // longitude
 
-	// Note: If you run into an error like the map disappearing, check that you have your longtidue and latitude variables mapped to the right indexes. The lon and lat are switched in the JSON and OpenLayers
-	//window.console.log("lon " + lon + " & lat " + lat);
+  // For debugging purposes:
+	// window.console.log("lon " + lon + " & lat " + lat);
 
-  // Finally, convert the lon/lat to a location!
+  // Finally, convert the lon/lat coordinates to an actual location on the map!
 	var location = ol.proj.fromLonLat([lon, lat]);
 
-	// Note: If you run into an error like window
-	// not loading, check that you declared VAR before the location variable.
-	//window.console.log("location " + location);
-
-  // move the viewport to the specified location
+  // Move the viewport to the specified location
 	view.animate({
 		center: location, // Location
 		duration: 2000    // Two seconds
 	});
 }
 
-// run init() function when window loads
+// Run init() function when window loads
 window.onload = init;
+
