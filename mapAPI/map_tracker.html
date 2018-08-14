@@ -28,7 +28,8 @@
       var map = new ol.Map({
         target: 'map',
         layers: [layer],
-        view: view
+        view: view,
+        tileOptions: {crossOriginKeyword: 'anonymous'}
       });
 
       // create an Overlay using the div with id location.
