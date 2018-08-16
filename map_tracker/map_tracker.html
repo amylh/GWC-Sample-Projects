@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Sources: https://openlayersbook.github.io/ch10-openlayers-goes-mobile/example-02.html
+                  https://openlayers.org/en/latest/examples/popup.html
+    -->
+    <title>Map Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://openlayersbook.github.io/openlayers_book_samples/assets/ol3/css/ol.css" type="text/css" />
+    <link rel="stylesheet" href="https://openlayersbook.github.io/openlayers_book_samples/assets/css/samples.css" type="text/css" />
+    <!-- font-awesome is an iconic font, which means we can draw resolution-independent icons -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+    <link rel="stylesheet" href="map_tracker.css">
+  </head>
+  <body>
+    <div id="map" class="full-map"></div>
+    <div id="location" class="marker"><span class="icon-flag"></div>
+
+    <!-- Popup -->
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+
+    <script src="https://openlayersbook.github.io/openlayers_book_samples/assets/ol3/js/ol-debug.js"></script>
+    <script src="map_tracker.js"></script>
+    <!-- <script src="map_popup.js"></script> -->
+  </body>
+</html>
