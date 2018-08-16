@@ -1,0 +1,61 @@
+body {
+  margin:0; padding:0;
+}
+#map {
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:100%;
+}
+
+#marker-list {
+  position:absolute;
+  top:0; right:0; width:200px;
+  bottom:0;
+  overflow-x:auto;
+  background:#fff;
+  margin:0;
+  padding:5px;
+}
+#marker-list li {
+  padding:5px;
+  margin:0;
+  list-style-type:none;
+  font-family:"Verdana";
+}
+#marker-list li:hover {
+  background:#eee;
+}
+
+.popup {
+  text-align:center;
+}
+
+.popup .slideshow .image {
+  display:none;
+}
+
+.popup .slideshow .image.active {
+  display:block;
+}
+
+.popup .slideshow img {
+  width:100%;
+  }
+
+.popup .slideshow .caption {
+  background:#eee;
+  padding:10px;
+  }
+
+.popup .cycle {
+  padding:10px 0 20px;
+  }
+
+.popup .cycle a.prev {
+  float:left;
+}
+
+.popup .cycle a.next {
+  float:right;
+}
