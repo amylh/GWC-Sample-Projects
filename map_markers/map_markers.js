@@ -147,7 +147,12 @@ $('#map').on('click', '.popup .cycle a', function() {
 
 for (var i=0; i<geoJson.length; i++){
 	var item = markerList.appendChild(document.createElement('li'));
-    item.innerHTML = geoJson[i].properties.title;
+    item.innerHTML = "<button onclick='pan(" + i.toString() + ")'>" + geoJson[i].properties.title + "</button>";
+}
+
+// Function to zoom to the coordinates of the clicked locations
+function pan(i) {
+  map.setView([geoJson[parseInt(i)].geometry.coordinates[1], geoJson[parseInt(i)].geometry.coordinates[0]], 15);
 }
 
 // Add features to the map
